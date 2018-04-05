@@ -10,7 +10,7 @@ CREATE TABLE STORE (
     street                      VARCHAR(60)     NOT NULL,
     zipcode                     INTEGER         NOT NULL,
     phone_number                VARCHAR(10)             ,
-    regular_hours               DATE            NOT NULL,
+    regular_hours               DATETIME        NOT NULL,
     holiday_hours               DATE                    ,
     PRIMARY KEY (store_id)
 );
@@ -109,11 +109,10 @@ CREATE TABLE ITEM (
     item_id                     INTEGER         NOT NULL, 
     name						VARCHAR(50)		NOT NULL,
     price                       DECIMAL(6,2)    NOT NULL, 
-    discount                    INTEGER         NOT NULL, 
+    discount                    INTEGER         		, 
     quantity_in_stock           INTEGER         NOT NULL,
-    total_price					INTEGER			NOT NULL, /*This should probably be derived but idk how to do that*/
     transaction_id				INTEGER			NOT NULL,
-    fk_reward_card_number			INTEGER			NOT NULL,
+    fk_reward_card_number		INTEGER			NOT NULL,
     fk_department_id			INTEGER			NOT NULL,
     FOREIGN KEY(fk_reward_card_number) REFERENCES CUSTOMER(reward_card_number),
     FOREIGN KEY(fk_department_id) REFERENCES DEPARTMENT(department_id),
