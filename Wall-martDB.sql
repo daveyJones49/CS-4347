@@ -1,6 +1,6 @@
-DROP DATABASE  IF EXISTS commydb;
-CREATE DATABASE IF NOT EXISTS commydb;
-USE commydb;
+DROP DATABASE  IF EXISTS Wall-martDB;
+CREATE DATABASE IF NOT EXISTS Wall-martDB;
+USE Wall-martDB;
 
 DROP TABLE IF EXISTS STORE;
 CREATE TABLE STORE (
@@ -25,12 +25,11 @@ CREATE TABLE EMPLOYEE (
     shift_number                INTEGER                 ,
     pto_amount                  INTEGER                 ,
     fk_superior_id              INTEGER         NOT NULL,
-    fk_store_id					INTEGER			NOT NULL,
+    fk_store_id			INTEGER		NOT NULL,
     PRIMARY KEY (employee_id),
-    FOREIGN KEY (fk_superior_id) REFERENCES EMPLOYEE(employee_id),
-    FOREIGN KEY(fk_store_id) REFERENCES STORE(store_id)
+    FOREIGN KEY (fk_superior_id) REFERENCES EMPLOYEE (employee_id),
+    FOREIGN KEY (fk_store_id) REFERENCES STORE (store_id)
 );
-    
 
 DROP TABLE IF EXISTS CUSTOMER;
 CREATE TABLE CUSTOMER (
@@ -39,12 +38,10 @@ CREATE TABLE CUSTOMER (
     name                                VARCHAR(50)     NOT NULL,
     phone_number                        VARCHAR(10)             ,
     PRIMARY KEY (reward_card_number),
-    UNIQUE(fk_employee_id),
-    UNIQUE(reward_card_number),
-    FOREIGN KEY (fk_employee_id) REFERENCES EMPLOYEE(employee_id)
+    UNIQUE (fk_employee_id),
+    UNIQUE (reward_card_number),
+    FOREIGN KEY (fk_employee_id) REFERENCES EMPLOYEE (employee_id)
 );
-
-
 
 DROP TABLE IF EXISTS DEPARTMENT;
 CREATE TABLE DEPARTMENT (
@@ -61,12 +58,9 @@ CREATE TABLE DEPARTMENT (
     department_type             VARCHAR(20)             ,
     total_registers             INTEGER                 ,
     PRIMARY KEY (department_id),
-    FOREIGN KEY (fk_manager_id) REFERENCES EMPLOYEE(employee_id),
-    FOREIGN KEY (fk_store_id)   REFERENCES STORE(store_id)
+    FOREIGN KEY (fk_manager_id) REFERENCES EMPLOYEE (employee_id),
+    FOREIGN KEY (fk_store_id)   REFERENCES STORE (store_id)
 );
-
-
-
 
 DROP TABLE IF EXISTS ENTRY;
 CREATE TABLE ENTRY (
@@ -74,7 +68,7 @@ CREATE TABLE ENTRY (
     hours_worked                INTEGER         NOT NULL, 
     hourly_pay                  INTEGER         NOT NULL, 
     PRIMARY KEY (fk_employee_id),
-    FOREIGN KEY (fk_employee_id) REFERENCES EMPLOYEE(employee_id)
+    FOREIGN KEY (fk_employee_id) REFERENCES EMPLOYEE (employee_id)
 );
 
 DROP TABLE IF EXISTS MANAGER;
@@ -83,38 +77,37 @@ CREATE TABLE MANAGER (
     bonus                       INTEGER                 , 
     salary                      INTEGER         NOT NULL,
     PRIMARY KEY (fk_employee_id),
-    FOREIGN KEY (fk_employee_id) REFERENCES EMPLOYEE(employee_id)
+    FOREIGN KEY (fk_employee_id) REFERENCES EMPLOYEE (employee_id)
 );
 
 DROP TABLE IF EXISTS RESPONSIBILITY;
 CREATE TABLE RESPONSIBILITY (
-	employee_id					INTEGER			NOT NULL,
-    responsibility				VARCHAR(100)	NOT NULL,
-    PRIMARY KEY(employee_id, responsibility),
-    FOREIGN KEY(employee_id) REFERENCES EMPLOYEE(employee_id)
+    employee_id			INTEGER		NOT NULL,
+    responsibility		VARCHAR(100)	NOT NULL,
+    PRIMARY KEY (employee_id, responsibility),
+    FOREIGN KEY (employee_id) REFERENCES EMPLOYEE (employee_id)
 );
-
 
 DROP TABLE IF EXISTS WORKS_IN;
 CREATE TABLE WORKS_IN (
     fk_department_id            INTEGER         NOT NULL,
     fk_employee_id              INTEGER         NOT NULL,
     PRIMARY KEY (fk_department_id, fk_employee_id),
-    FOREIGN KEY (fk_department_id) REFERENCES DEPARTMENT(department_id),
-    FOREIGN KEY (fk_employee_id) REFERENCES EMPLOYEE(employee_id)
+    FOREIGN KEY (fk_department_id) REFERENCES DEPARTMENT (department_id),
+    FOREIGN KEY (fk_employee_id) REFERENCES EMPLOYEE (employee_id)
 );
 
 DROP TABLE IF EXISTS ITEM;
 CREATE TABLE ITEM (
     item_id                     INTEGER         NOT NULL, 
-    name						VARCHAR(50)		NOT NULL,
+    name			VARCHAR(50)	NOT NULL,
     price                       DECIMAL(6,2)    NOT NULL, 
-    discount                    INTEGER         		, 
+    discount                    INTEGER         	, 
     quantity_in_stock           INTEGER         NOT NULL,
-    transaction_id				INTEGER			NOT NULL,
-    fk_reward_card_number		INTEGER			NOT NULL,
-    fk_department_id			INTEGER			NOT NULL,
-    FOREIGN KEY(fk_reward_card_number) REFERENCES CUSTOMER(reward_card_number),
-    FOREIGN KEY(fk_department_id) REFERENCES DEPARTMENT(department_id),
+    transaction_id		INTEGER		NOT NULL,
+    fk_reward_card_number	INTEGER		NOT NULL,
+    fk_department_id		INTEGER		NOT NULL,
+    FOREIGN KEY (fk_reward_card_number) REFERENCES CUSTOMER (reward_card_number),
+    FOREIGN KEY (fk_department_id) REFERENCES DEPARTMENT (department_id),
     PRIMARY KEY (item_id)
 );
