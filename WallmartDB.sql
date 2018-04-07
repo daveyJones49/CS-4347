@@ -5,13 +5,14 @@ USE WallmartDB;
 DROP TABLE IF EXISTS STORE;
 CREATE TABLE STORE (
     store_id                    INTEGER         NOT NULL, 
-    address                     VARCHAR(200)    NOT NULL,
     city                        VARCHAR(60)     NOT NULL,
     street                      VARCHAR(60)     NOT NULL,
     zipcode                     INTEGER         NOT NULL,
     phone_number                VARCHAR(10)             ,
-    regular_hours               DATETIME        NOT NULL,
-    holiday_hours               DATE                    ,
+    open_time                   DATETIME        NOT NULL,
+    close_time                  DATETIME        NOT NULL,
+    holiday_open                DATETIME                ,
+    holiday_close               DATETIME                ,
     PRIMARY KEY (store_id)
 );
 
@@ -25,7 +26,7 @@ CREATE TABLE EMPLOYEE (
     shift_number                INTEGER                 ,
     pto_amount                  INTEGER                 ,
     fk_superior_id              INTEGER         NOT NULL,
-    fk_store_id			INTEGER		NOT NULL,
+    fk_store_id			        INTEGER		    NOT NULL,
     PRIMARY KEY (employee_id),
     FOREIGN KEY (fk_superior_id) REFERENCES EMPLOYEE (employee_id),
     FOREIGN KEY (fk_store_id) REFERENCES STORE (store_id)
@@ -82,8 +83,8 @@ CREATE TABLE MANAGER (
 
 DROP TABLE IF EXISTS RESPONSIBILITY;
 CREATE TABLE RESPONSIBILITY (
-    employee_id			INTEGER		NOT NULL,
-    responsibility		VARCHAR(100)	NOT NULL,
+    employee_id			        INTEGER		    NOT NULL,
+    responsibility		        VARCHAR(100)	NOT NULL,
     PRIMARY KEY (employee_id, responsibility),
     FOREIGN KEY (employee_id) REFERENCES EMPLOYEE (employee_id)
 );
@@ -100,13 +101,13 @@ CREATE TABLE WORKS_IN (
 DROP TABLE IF EXISTS ITEM;
 CREATE TABLE ITEM (
     item_id                     INTEGER         NOT NULL, 
-    name			VARCHAR(50)	NOT NULL,
+    name			            VARCHAR(50)	    NOT NULL,
     price                       DECIMAL(6,2)    NOT NULL, 
-    discount                    INTEGER         	, 
+    discount                    INTEGER             	, 
     quantity_in_stock           INTEGER         NOT NULL,
-    transaction_id		INTEGER		NOT NULL,
-    fk_reward_card_number	INTEGER		NOT NULL,
-    fk_department_id		INTEGER		NOT NULL,
+    transaction_id		        INTEGER		    NOT NULL,
+    fk_reward_card_number	    INTEGER		    NOT NULL,
+    fk_department_id		    INTEGER		    NOT NULL,
     FOREIGN KEY (fk_reward_card_number) REFERENCES CUSTOMER (reward_card_number),
     FOREIGN KEY (fk_department_id) REFERENCES DEPARTMENT (department_id),
     PRIMARY KEY (item_id)
