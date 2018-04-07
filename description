@@ -1,0 +1,97 @@
+customer
++--------------------+-------------+------+-----+---------+-------+
+| Field              | Type        | Null | Key | Default | Extra |
++--------------------+-------------+------+-----+---------+-------+
+| reward_card_number | int(11)     | NO   | PRI | NULL    |       |
+| fk_employee_id     | int(11)     | YES  | MUL | NULL    |       |
+| name               | varchar(50) | NO   |     | NULL    |       |
+| phone_number       | varchar(10) | YES  |     | NULL    |       |
++--------------------+-------------+------+-----+---------+-------+
+
+department
++-------------------------+-------------+------+-----+---------+-------+
+| Field                   | Type        | Null | Key | Default | Extra |
++-------------------------+-------------+------+-----+---------+-------+
+| department_id           | int(11)     | NO   | PRI | NULL    |       |
+| fk_manager_id           | int(11)     | YES  | MUL | NULL    |       |
+| fk_store_id             | int(11)     | YES  | MUL | NULL    |       |
+| active_registers        | int(11)     | YES  |     | NULL    |       |
+| craft_station_open      | tinyint(1)  | YES  |     | NULL    |       |
+| photo_lab_open          | tinyint(1)  | YES  |     | NULL    |       |
+| date_of_last_inspection | date        | YES  |     | NULL    |       |
+| floor_number            | int(11)     | YES  |     | NULL    |       |
+| name                    | varchar(80) | NO   |     | NULL    |       |
+| number_of_freezers      | int(11)     | YES  |     | NULL    |       |
+| department_type         | varchar(20) | YES  |     | NULL    |       |
+| total_registers         | int(11)     | YES  |     | NULL    |       |
++-------------------------+-------------+------+-----+---------+-------+
+
+employee
++----------------+--------------+------+-----+---------+-------+
+| Field          | Type         | Null | Key | Default | Extra |
++----------------+--------------+------+-----+---------+-------+
+| employee_id    | int(11)      | NO   | PRI | NULL    |       |
+| name           | varchar(80)  | NO   |     | NULL    |       |
+| address        | varchar(200) | YES  |     | NULL    |       |
+| phone_number   | varchar(10)  | YES  |     | NULL    |       |
+| date_of_hire   | date         | NO   |     | NULL    |       |
+| shift_number   | int(11)      | YES  |     | NULL    |       |
+| pto_amount     | int(11)      | YES  |     | NULL    |       |
+| fk_superior_id | int(11)      | YES  | MUL | NULL    |       |
+| fk_store_id    | int(11)      | YES  | MUL | NULL    |       |
++----------------+--------------+------+-----+---------+-------+
+
+entry
++----------------+---------+------+-----+---------+-------+
+| Field          | Type    | Null | Key | Default | Extra |
++----------------+---------+------+-----+---------+-------+
+| fk_employee_id | int(11) | NO   | PRI | NULL    |       |
+| hours_worked   | int(11) | NO   |     | NULL    |       |
+| hourly_pay     | int(11) | NO   |     | NULL    |       |
++----------------+---------+------+-----+---------+-------+
+
+item
++-----------------------+--------------+------+-----+---------+-------+
+| Field                 | Type         | Null | Key | Default | Extra |
++-----------------------+--------------+------+-----+---------+-------+
+| item_id               | int(11)      | NO   | PRI | NULL    |       |
+| name                  | varchar(50)  | NO   |     | NULL    |       |
+| price                 | decimal(6,2) | NO   |     | NULL    |       |
+| discount              | int(11)      | YES  |     | NULL    |       |
+| quantity_in_stock     | int(11)      | NO   |     | NULL    |       |
+| transaction_id        | int(11)      | NO   |     | NULL    |       |
+| fk_reward_card_number | int(11)      | YES  | MUL | NULL    |       |
+| fk_department_id      | int(11)      | YES  | MUL | NULL    |       |
++-----------------------+--------------+------+-----+---------+-------+
+
+manager
++----------------+---------+------+-----+---------+-------+
+| Field          | Type    | Null | Key | Default | Extra |
++----------------+---------+------+-----+---------+-------+
+| fk_employee_id | int(11) | NO   | PRI | NULL    |       |
+| bonus          | int(11) | YES  |     | NULL    |       |
+| salary         | int(11) | NO   |     | NULL    |       |
++----------------+---------+------+-----+---------+-------+
+
+store
++---------------+-------------+------+-----+---------+-------+
+| Field         | Type        | Null | Key | Default | Extra |
++---------------+-------------+------+-----+---------+-------+
+| store_id      | int(11)     | NO   | PRI | NULL    |       |
+| city          | varchar(60) | NO   |     | NULL    |       |
+| street        | varchar(60) | NO   |     | NULL    |       |
+| zipcode       | int(11)     | NO   |     | NULL    |       |
+| phone_number  | varchar(10) | YES  |     | NULL    |       |
+| open_time     | datetime    | NO   |     | NULL    |       |
+| close_time    | datetime    | NO   |     | NULL    |       |
+| holiday_open  | datetime    | YES  |     | NULL    |       |
+| holiday_close | datetime    | YES  |     | NULL    |       |
++---------------+-------------+------+-----+---------+-------+
+
+works_in
++------------------+---------+------+-----+---------+-------+
+| Field            | Type    | Null | Key | Default | Extra |
++------------------+---------+------+-----+---------+-------+
+| fk_department_id | int(11) | NO   | PRI | NULL    |       |
+| fk_employee_id   | int(11) | NO   | PRI | NULL    |       |
++------------------+---------+------+-----+---------+-------+
