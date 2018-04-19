@@ -9,10 +9,10 @@ CREATE TABLE STORE (
     street                      VARCHAR(60)     NOT NULL,
     zipcode                     INTEGER         NOT NULL,
     phone_number                VARCHAR(10)             ,
-    open_time                   DATETIME        NOT NULL,
-    close_time                  DATETIME        NOT NULL,
-    holiday_open                DATETIME                ,
-    holiday_close               DATETIME                ,
+    open_time                   VARCHAR(5)        NOT NULL,
+    close_time                  VARCHAR(5)      NOT NULL,
+    holiday_open                VARCHAR(5)              ,
+    holiday_close               VARCHAR(5)               ,
     PRIMARY KEY (store_id)
 );
 
@@ -20,7 +20,9 @@ DROP TABLE IF EXISTS EMPLOYEE;
 CREATE TABLE EMPLOYEE (  
     employee_id                 INTEGER         NOT NULL,
     name                        VARCHAR(80)     NOT NULL,
-    address                     VARCHAR(200)            ,
+    city                        VARCHAR(60)     NOT NULL,
+    street                      VARCHAR(60)     NOT NULL,
+    zipcode                     INTEGER         NOT NULL,
     phone_number                VARCHAR(10)             ,
     date_of_hire                DATE            NOT NULL,
     shift_number                INTEGER                 ,
@@ -37,9 +39,9 @@ CREATE TABLE EMPLOYEE (
 DROP TABLE IF EXISTS CUSTOMER;
 CREATE TABLE CUSTOMER (
     reward_card_number                  INTEGER         NOT NULL,
-    fk_employee_id                      INTEGER         		, 
     name                                VARCHAR(50)     NOT NULL,
     phone_number                        VARCHAR(10)             ,
+    fk_employee_id                      INTEGER         		, 
     PRIMARY KEY (reward_card_number),
     FOREIGN KEY (fk_employee_id) REFERENCES EMPLOYEE (employee_id)
 		ON DELETE SET NULL 	ON UPDATE CASCADE
@@ -48,17 +50,16 @@ CREATE TABLE CUSTOMER (
 DROP TABLE IF EXISTS DEPARTMENT;
 CREATE TABLE DEPARTMENT (
     department_id               INTEGER         NOT NULL, 
-    fk_manager_id               INTEGER         		,
-    fk_store_id                 INTEGER         		,
     active_registers            INTEGER                 ,
     craft_station_open          BOOLEAN                 ,
     photo_lab_open				BOOLEAN					,
     date_of_last_inspection     DATE                    ,
     floor_number                INTEGER                 ,
-    name                        VARCHAR(80)     NOT NULL,
     number_of_freezers          INTEGER                 ,
     department_type             VARCHAR(20)             ,
     total_registers             INTEGER                 ,
+    fk_manager_id               INTEGER         		,
+    fk_store_id                 INTEGER         		,
     PRIMARY KEY (department_id),
     FOREIGN KEY (fk_manager_id) REFERENCES EMPLOYEE (employee_id)
 		ON DELETE SET NULL 	ON UPDATE CASCADE,
@@ -67,10 +68,10 @@ CREATE TABLE DEPARTMENT (
 );
 
 DROP TABLE IF EXISTS ENTRY;
-CREATE TABLE ENTRY (
-    fk_employee_id              INTEGER         		, 
+CREATE TABLE ENTRY ( 
     hours_worked                INTEGER         NOT NULL, 
     hourly_pay                  INTEGER         NOT NULL, 
+    fk_employee_id              INTEGER         		,
     PRIMARY KEY (fk_employee_id),
     FOREIGN KEY (fk_employee_id) REFERENCES EMPLOYEE (employee_id)
 		ON DELETE CASCADE 	ON UPDATE CASCADE
@@ -78,9 +79,9 @@ CREATE TABLE ENTRY (
 
 DROP TABLE IF EXISTS MANAGER;
 CREATE TABLE MANAGER (
-    fk_employee_id              INTEGER         		, 
     bonus                       INTEGER                 , 
     salary                      INTEGER         NOT NULL,
+    fk_employee_id              INTEGER         		, 
     PRIMARY KEY (fk_employee_id),
     FOREIGN KEY (fk_employee_id) REFERENCES EMPLOYEE (employee_id)
 		ON DELETE CASCADE 	ON UPDATE CASCADE
