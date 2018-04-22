@@ -1,0 +1,17 @@
+You'll need to install node and npm
+- I got it from their website and added it to bin path
+
+You'll also need express.
+- npm install express
+
+If you get error messages about audio format, I think firefox specific
+- sudo apt install gstreamer1.0-plugins-bad
+
+Running it locally, you'll need to change the database credentials to yours
+- look at first couple lines in Server.js
+
+To get everything running you'll need to start a server first
+- node Server.js
+
+Then the client
+- firefox Mystery.html

@@ -1,0 +1,149 @@
+body{
+	font-size: 20;
+	height: 100%;
+	width: 100%;
+	background-color: black;
+	background-image: url('background.jpeg');
+	background-repeat: no-repeat;
+	background-size: cover;
+	overflow: hidden;
+	color: white;
+}
+
+#left{
+	float: left;
+	height: 100%;
+	width: 70%;
+}
+
+#right{
+	float: left;
+	height: 100%;
+	width: 30%;
+}
+
+#mapcol0{
+	float: left;
+	height: 90%;
+	width: 33%;
+}
+
+#mapcol1{
+	float: left;
+	height: 90%;
+	width: 34%;
+}
+
+#mapcol2{
+	float: left;
+	height: 90%;
+	width: 33%;
+}
+
+#map0-0{
+	height: 33%;
+	width: 100%;
+}
+
+#map0-1{
+	height: 33%;
+	width: 100%;
+}
+
+#map0-2{
+	height: 33%;
+	width: 100%;
+}
+
+#map1-0{
+	height: 33%;
+	width: 100%;
+}
+
+#map1-1{
+	height: 33%;
+	width: 100%;
+}
+
+#map1-2{
+	height: 33%;
+	width: 100%;
+}
+
+#map2-0{
+	height: 33%;
+	width: 100%;
+}
+
+#map2-1{
+	height: 33%;
+	width: 100%;
+}
+
+#map2-2{
+	height: 33%;
+	width: 100%;
+}
+
+
+#visual{
+	height: 50%;
+	background: url(normal.jpg) no-repeat;
+	background-size: 100% 100%;
+	vertical-align: bottom;
+	position:relative;
+}
+
+#fire{
+	position: absolute;
+	bottom: -10;
+	vertical-align: bottom;
+	height: 45%;
+	width: 100%;
+}
+
+#responses{
+	height:35%;
+	overflow: auto;
+	font-size: 14px;
+	color: #FFF;
+}
+
+#input{
+	height: 5%;
+}
+
+#map{
+	height: 40%;
+	color: #FFF;
+	text-align: center;
+}
+
+#mapfloor{
+	height: "10%";
+	font-size: 20;
+}
+
+#receipt{
+	height: 59%;
+	background-color: #222222;
+	text-align: center;
+	line-height: 15;
+	vertical-align: middle;
+	font-size: 30px;
+}
+
+#objective{
+	text-align: center;
+	height: 10%;
+	width: 100%;
+	background-color: #333333;
+	font-size: 30px;
+	color: white;
+}
+
+#userInput{
+	background-color: transparent;
+	color: #FFF;
+	width: 100%;
+}

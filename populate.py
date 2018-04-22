@@ -206,7 +206,7 @@ Department = namedtuple('Department', ["department_id", "active_registers",
 departments = []
 department_id = 1
 for s in stores:
-	for department_type in ("Electronics", "Homegoods", "Grocery", "Checkout"):
+	for floor_number, department_type in enumerate(("Checkout", "Grocery", "Homegoods", "Electronics")):
 		e = choice(employees)
 		while not e.fk_superior_id:
 			e = choice(employees)
@@ -217,7 +217,7 @@ for s in stores:
 			randrange(0,2) if department_type == "Homegoods" else 'NULL',
 			randrange(0,2) if department_type == "Electronics" else 'NULL',
 			'"%s-%s-%s"' % (randrange(1980, 2019), randrange(1, 13), randrange(1, 28)) if department_type == "Grocery" else  'NULL',
-			randrange(1,4),
+			floor_number+1,
 			randrange(0,31) if department_type == "Grocery" else 'NULL',
 			department_type,
 			randrange(0,25) if department_type == "Checkout" else 'NULL',
