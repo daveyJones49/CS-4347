@@ -1,0 +1,5 @@
+[ ] add gridlines to map
+[ ] add compass
+[ ] add title Great Wall-mart of China
+[✓] add borders to divs
+[ ] at the end there should be text saying you won or you lost
