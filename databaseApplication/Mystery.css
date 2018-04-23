@@ -85,10 +85,9 @@ body{
 	width: 100%;
 }
 
-
 #visual{
 	height: 50%;
-	background: url(normal.jpg) no-repeat;
+	background: url(normalHomegood.jpg) no-repeat;
 	background-size: 100% 100%;
 	vertical-align: bottom;
 	position:relative;

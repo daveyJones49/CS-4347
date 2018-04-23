@@ -24,40 +24,13 @@ var gameData = null;
 $(document).ready(function() {
 	colorMap();
 	$('#userinput').val('');
-
+	
 	$.get("http://localhost:3030/test", 
 		function(data, status){
-			gameData = data;
-			countDownDate = new Date().getTime() + 60*1000*5;//(1/6);
 			toto = new Audio("toto.mp3");
 			toto.play();
-			
-			
-			var k = setInterval(function(){
-				// Get todays date and time
-				var now = new Date().getTime();
-
-				// Find the distance between now an the count down date
-				var distance = countDownDate - now;
-
-				// Time calculations for days, hours, minutes and seconds
-				var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-				var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-				$('#objective').html(minutes + "m " + seconds + "s ");
-
-				// If the count down is finished, write some text 
-				if (distance < 0) {
-					clearInterval(k);
-					$('#objective').html("time up");
-					toto.pause();
-					audio.pause();
-					audio = new Audio("gameover.mp3");
-					audio.play();
-					clearInterval(i);
-				}
-			}, 1000);
-
+			gameData = data;
+			countDownDate = new Date().getTime() + 60*1000*10;//(1/6);
 		}
 	);
 
@@ -70,20 +43,96 @@ $(document).ready(function() {
 	});
 
 	var md = document.getElementById("visual");
+	md.style.background = 'url(normalHomegood.jpg) no-repeat';
+	md.style.backgroundSize = '100% 100%';
 	var j = null;
 	var i = setInterval(function(){
+		if (gameEnded) {
+			toto.pause();
+			clearInterval(i);
+		}
+		
 		audio = new Audio('bam' + Math.floor(Math.random()*7) + '.mp3');
 		audio.play();
-		md.style.background = 'url(shaky.gif) no-repeat';
-		md.style.backgroundSize = '100% 100%';
+		if (FLOOR === 4) {
+			md.style.background = 'url(shakyElectronic.gif) no-repeat';
+			md.style.backgroundSize = '100% 100%';
+		} else if (FLOOR === 3) {
+			md.style.background = 'url(shakyHomegood.gif) no-repeat';
+			md.style.backgroundSize = '100% 100%';
+		} else if (FLOOR === 2) {
+			md.style.background = 'url(shakyGrocery.gif) no-repeat';
+			md.style.backgroundSize = '100% 100%';
+		} else {
+			md.style.background = 'url(shakyCheckout.gif) no-repeat';
+			md.style.backgroundSize = '100% 100%';
+		}
 		
 		j = setInterval(function() {
-			md.style.background = 'url(normal.jpg) no-repeat';
-			md.style.backgroundSize = '100% 100%';
+			if (FLOOR === 4) {
+				md.style.background = 'url(normalElectronic.jpeg) no-repeat';
+				md.style.backgroundSize = '100% 100%';
+			} else if (FLOOR === 3) {
+				md.style.background = 'url(normalHomegood.jpg) no-repeat';
+				md.style.backgroundSize = '100% 100%';
+			} else if (FLOOR === 2) {
+				md.style.background = 'url(normalGrocery.jpg) no-repeat';
+				md.style.backgroundSize = '100% 100%';
+			} else {
+				md.style.background = 'url(normalCheckout.jpeg) no-repeat';
+				md.style.backgroundSize = '100% 100%';
+			}
+			
 			clearInterval(j);
 		}, 300);
 	}, 5000);
+
+	var k = setInterval(function(){
+		if(countDownDate == null)
+			return;
+			
+		if (gameEnded) {
+			toto.pause();
+			clearInterval(k);
+		}
+		
+		// Get todays date and time
+		var now = new Date().getTime();
+
+		// Find the distance between now an the count down date
+		var distance = countDownDate - now;
+
+		// Time calculations for days, hours, minutes and seconds
+		var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+		var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+		$('#objective').html(minutes + "m " + seconds + "s ");
+
+		// If the count down is finished, write some text 
+		if (distance < 0) {
+			clearInterval(k);
+			$('#objective').html("time up");
+			toto.pause();
+			audio.pause();
+			audio = new Audio("gameover.mp3");
+			audio.play();
+			clearInterval(i);
+			endGame();
+		}
+	}, 1000);
+
 });
+
+function endGame() {
+	var newBody = "<div id=\"player\" class=\"player\" style=\"float:left; height: 100%; width: 100%;\"> <video id=\"element\" src=\"collapse.mp4\" autoplay style=\"height:100%; width:100%;\"></video></div>";
+	$('body').html(newBody);
+}
+
+function youWon() {
+	gameEnded = true;
+	var newBody = "<div id=\"player\" class=\"player\" style=\"float:left; height: 100%; width: 100%;\"> <video id=\"element\" src=\"bloodyhell.mp4\" autoplay style=\"height:100%; width:100%;\"></video></div>";
+	$('body').html(newBody);
+}
 
 //write to the response div
 function writeResponse(line){
@@ -150,7 +199,11 @@ function iterate(){
 	else if(input.startsWith('take ')){
 		doTake(input);
 	}
-	else{
+	else if(input === 'win'){
+		youWon();
+	} else if(input === 'die'){
+		endGame();
+	} else{
 		writeResponse("I don't know that command");
 	}
 }
@@ -194,7 +247,7 @@ function doExitDoor(){
 		}
 		else if(gameData.employee.employee_id == prompt("Enter passcode")){
 			writeResponse("You exit the door into freedom. You win.");
-			gameEnded = true;
+			youWon();
 		}
 		else{
 			writeResponse("The door rejects you with a loud beep.");
@@ -285,6 +338,7 @@ function doGo(input){
 		else{
 			FLOOR += 1;
 			writeResponse("You go up a floor.");
+			updateImage(FLOOR);
 		}
 	}
 	else if(dir === 'down'){
@@ -299,6 +353,7 @@ function doGo(input){
 		else{
 			FLOOR -= 1;
 			writeResponse("You go down a floor.");
+			updateImage(FLOOR);
 		}
 	}
 	else{
@@ -308,6 +363,23 @@ function doGo(input){
 	
 	checkReceipt();
 	colorMap();
+}
+
+function updateImage(floor) {
+	var md = document.getElementById("visual");
+	if (FLOOR === 4) {
+		md.style.background = 'url(normalElectronic.jpeg) no-repeat';
+		md.style.backgroundSize = '100% 100%';
+	} else if (FLOOR === 3) {
+		md.style.background = 'url(normalHomegood.jpg) no-repeat';
+		md.style.backgroundSize = '100% 100%';
+	} else if (FLOOR === 2) {
+		md.style.background = 'url(normalGrocery.jpg) no-repeat';
+		md.style.backgroundSize = '100% 100%';
+	} else {
+		md.style.background = 'url(normalCheckout.jpeg) no-repeat';
+		md.style.backgroundSize = '100% 100%';
+	}
 }
 
 function checkReceipt(){
@@ -551,6 +623,7 @@ function revealReceipt(){
 	R.style.lineHeight = 1.5;
 	R.style.verticalAlign = 'middle';
 	R.style.paddingLeft = '100';
+	R.style.paddingRight = '75';
 	R.style.paddingTop = '50';
 	writeReceipt();
 }
