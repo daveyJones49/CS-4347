@@ -13,9 +13,9 @@ Here are some things you can do:<br>\
 <ul>\
 <li>help - Print this helpful message</li>\
 <li>look around - Look at surroundings</li>\
-<li>exit door - Attempt to exit through a door, if near one</li>\
-<li>go &ltdirection&gt - go in a given direction (north, south, east, west, up, down)</li>\
-<li>inspect &ltdirection&gt - inspect in a given direction (north, south, east, west)</li>\
+<li>exit door - Attempt to exit through a door, if next to one</li>\
+<li>go &ltdirection&gt - walk in a given direction (north, south, east, west, up, down)</li>\
+<li>inspect &ltdirection&gt - inspect a direction (north, south, east, west)</li>\
 <li>take &ltnumber&gt from &ltdirection&gt - take the item with the given number from the shelf in the given direction (north, south)</li>\
 ";
 
@@ -30,7 +30,7 @@ $(document).ready(function() {
 			toto = new Audio("toto.mp3");
 			toto.play();
 			gameData = data;
-			countDownDate = new Date().getTime() + 60*1000*10;//(1/6);
+			countDownDate = new Date().getTime() + 60*1000*5;
 		}
 	);
 
@@ -190,7 +190,7 @@ function iterate(){
 	else if(input === 'exit door'){
 		doExitDoor();
 	}
-	else if(input.startsWith('inspect ') || input.startsWith('look ')){
+	else if(input.startsWith('inspect ')){
 		doInspect(input);
 	}
 	else if(input.startsWith('go ')){
@@ -199,10 +199,6 @@ function iterate(){
 	else if(input.startsWith('take ')){
 		doTake(input);
 	}
-	else if(input === 'win'){
-		youWon();
-	} else if(input === 'die'){
-		endGame();
 	} else{
 		writeResponse("I don't know that command");
 	}
