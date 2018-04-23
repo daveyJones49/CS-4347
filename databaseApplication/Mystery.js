@@ -123,6 +123,14 @@ $(document).ready(function() {
 
 });
 
+    }
+    else if(d === 'e') { 
+        d = 'east';
+    }
+    else if(d === 'w') { 
+        d = 'west';
+    }
+
 function endGame() {
 	var newBody = "<div id=\"player\" class=\"player\" style=\"float:left; height: 100%; width: 100%;\"> <video id=\"element\" src=\"collapse.mp4\" autoplay style=\"height:100%; width:100%;\"></video></div>";
 	$('body').html(newBody);
@@ -265,6 +273,8 @@ function doGo(input){
 	}
 	
 	var dir = arr[1];
+    dir = checkAlias(dir);
+
 	if(dir === 'north'){
 		if(COL == 0 || COL == 2){
 			if(FLOOR == 1)
@@ -396,6 +406,8 @@ function doInspect(input) {
 	}
 	
 	var dir = arr[1];
+    dir = checkAlias(dir);
+
 	var floorShelves = null;
 	if(FLOOR == 1){
 		floorShelves = gameData.register;
@@ -446,7 +458,6 @@ function doInspect(input) {
 		shelf = floorShelves[11];
 	}
 	
-	dir = arr[1];
 	if(dir === 'north'){
 		if(COL == 0 || COL == 2){
 			if(FLOOR == 1)
@@ -518,6 +529,7 @@ function doTake(input) {
 	
 	var num = arr[1]-1;
 	var dir = arr[3];
+    dir = checkAlias(dir);
 	
 	var floorShelves = null;
 	if(FLOOR == 2){
@@ -597,6 +609,9 @@ function colorMap(){
 	$("#mapfloor").html("Map of floor " + FLOOR);
 	for(var r = 0; r < 3; r++){
 		for(var c = 0; c < 3; c++){
+            if(FLOOR == 1) {
+                $('#map2-1').children().html('door');
+            }
 			if(r == ROW && c == COL)
 				$('#map' + r + "-" + c)[0].style.backgroundColor = '#A32B08';
 			else

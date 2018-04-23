@@ -1,148 +1,181 @@
 body{
-	font-size: 20;
-	height: 100%;
-	width: 100%;
-	background-color: black;
-	background-image: url('background.jpeg');
-	background-repeat: no-repeat;
-	background-size: cover;
-	overflow: hidden;
-	color: white;
+    font-size: 20;
+    height: 100%;
+    width: 100%;
+    background-color: black;
+    background-image: url('background.jpeg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow: hidden;
+    color: white;
 }
 
 #left{
-	float: left;
-	height: 100%;
-	width: 70%;
+    float: left;
+    height: 100%;
+    width: 70%;
 }
 
 #right{
-	float: left;
-	height: 100%;
-	width: 30%;
+    float: left;
+    height: 100%;
+    width: 30%;
 }
 
 #mapcol0{
-	float: left;
-	height: 90%;
-	width: 33%;
+    float: left;
+    height: 90%;
+    width: 33%;
 }
 
 #mapcol1{
-	float: left;
-	height: 90%;
-	width: 34%;
+    float: left;
+    height: 90%;
+    width: 34%;
 }
 
 #mapcol2{
-	float: left;
-	height: 90%;
-	width: 33%;
+    float: left;
+    height: 90%;
+    width: 33%;
 }
 
 #map0-0{
-	height: 33%;
-	width: 100%;
+    height: 33%;
+    width: 100%;
+    border-left:solid black;
+    border-top:solid black;
+    border-bottom: solid black;
 }
 
 #map0-1{
-	height: 33%;
-	width: 100%;
+    height: 33%;
+    width: 100%;
+    color:black;
+    font-size: small;
+    border-top:solid black;
 }
 
 #map0-2{
-	height: 33%;
-	width: 100%;
+    height: 33%;
+    width: 100%;
+    border-top:solid black;
+    border-bottom:solid black;
 }
 
 #map1-0{
-	height: 33%;
-	width: 100%;
+    height: 33%;
+    width: 100%;
+    border-left: solid black;
 }
 
 #map1-1{
-	height: 33%;
-	width: 100%;
+    height: 33%;
+    width: 100%;
+    border-top: solid rgba(221, 221, 221, 1);
 }
 
 #map1-2{
-	height: 33%;
-	width: 100%;
+    height: 33%;
+    width: 100%;
 }
 
 #map2-0{
-	height: 33%;
-	width: 100%;
+    height: 33%;
+    width: 100%;
+    border-left:solid black;
+    border-top:solid black;
 }
 
-#map2-1{
-	height: 33%;
-	width: 100%;
+
+#map2-1 {
+    height: 33%;
+    width: 100%;
+    border-top: solid rgba(221, 221, 221, 1);
+    position:relative;
+}
+
+#map2-1 p {
+    position:absolute;
+    bottom:0;
+    color:black;
+    font-size: small;
+    text-align:center;
+    vertical-align:bottom;
 }
 
 #map2-2{
-	height: 33%;
-	width: 100%;
+    height: 33%;
+    width: 100%;
+    border-top:solid black;
 }
 
 #visual{
-	height: 50%;
-	background: url(normalHomegood.jpg) no-repeat;
-	background-size: 100% 100%;
-	vertical-align: bottom;
-	position:relative;
+    height: 50%;
+    background: url(normalHomegood.jpg) no-repeat;
+    background-size: 100% 100%;
+    vertical-align: bottom;
+    position:relative;
 }
 
 #fire{
-	position: absolute;
-	bottom: -10;
-	vertical-align: bottom;
-	height: 45%;
-	width: 100%;
+    position: absolute;
+    bottom: -10;
+    vertical-align: bottom;
+    height: 45%;
+    width: 100%;
 }
 
 #responses{
-	height:35%;
-	overflow: auto;
-	font-size: 14px;
-	color: #FFF;
+    height:35%;
+    overflow: auto;
+    font-size: 14px;
+    color: #FFF;
 }
 
 #input{
-	height: 5%;
+    height: 5%;
 }
 
 #map{
-	height: 40%;
-	color: #FFF;
-	text-align: center;
+    height: 40%;
+    color: #FFF;
+    text-align: center;
+    border-left-style: solid;
+    border-left-color: #333333;
+    border-left-width: thick;
 }
 
 #mapfloor{
-	height: "10%";
-	font-size: 20;
+    height: 5%;
+    text-align: center;
+    text-vertical-align: center;
+    font-size: medium;
 }
 
 #receipt{
-	height: 59%;
-	background-color: #222222;
-	text-align: center;
-	line-height: 15;
-	vertical-align: middle;
-	font-size: small;
+    height: 54%;
+    background-color: #222222;
+    text-align: center;
+    line-height: 15;
+    vertical-align: middle;
+    font-size: small;
+    border-left-style: solid;
+    border-left-color: #333333;
+    border-left-width: thick;
 }
 
-#objective{
-	text-align: center;
-	height: 10%;
-	width: 100%;
-	background-color: #333333;
-	font-size: 30px;
-	color: white;
+#countdown {
+    text-align: center;
+    height: 10%;
+    width: 100%;
+    background-color: #333333;
+    font-size: 30px;
+    color: white;
 }
 
 #userInput{
-	background-color: transparent;
-	color: #FFF;
-	width: 100%;
+    background-color: transparent;
+    color: #FFF;
+    width: 99%;
 }
