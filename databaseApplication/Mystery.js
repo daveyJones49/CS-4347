@@ -198,7 +198,6 @@ function iterate(){
 	}
 	else if(input.startsWith('take ')){
 		doTake(input);
-	}
 	} else{
 		writeResponse("I don't know that command");
 	}
@@ -614,7 +613,7 @@ function revealReceipt(){
 	R.style.backgroundSize = "100% 100%";
 	R.style.backgroundColor = 'transparent';
 	R.style.color = '#000000';
-	R.style.fontSize = '14';
+	R.style.fontSize = 'small';
 	R.style.textAlign = 'left';
 	R.style.lineHeight = 1.5;
 	R.style.verticalAlign = 'middle';
