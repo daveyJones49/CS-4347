@@ -149,8 +149,9 @@ body{
 #mapfloor{
     height: 5%;
     text-align: center;
-    text-vertical-align: center;
     font-size: medium;
+    color: #A32B08;
+    font-weight: bold;
 }
 
 #receipt{

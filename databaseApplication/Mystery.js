@@ -620,7 +620,7 @@ function doTake(input) {
 }
 
 function colorMap(){
-	$("#mapfloor").html("Map of floor " + FLOOR);
+	$("#mapfloor").html("The Great Wall-mart of China: Floor " + FLOOR);
 	for(var r = 0; r < 3; r++){
 		for(var c = 0; c < 3; c++){
             if(FLOOR == 1) {
