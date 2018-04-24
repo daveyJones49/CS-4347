@@ -43,7 +43,7 @@ $(document).ready(function() {
 	});
 
 	var md = document.getElementById("visual");
-	md.style.background = 'url(normalHomegood.jpg) no-repeat';
+	md.style.background = 'url(darkHomegood.jpg) no-repeat';
 	md.style.backgroundSize = '100% 100%';
 	var j = null;
 	var i = setInterval(function(){
@@ -55,31 +55,31 @@ $(document).ready(function() {
 		audio = new Audio('bam' + Math.floor(Math.random()*7) + '.mp3');
 		audio.play();
 		if (FLOOR === 4) {
-			md.style.background = 'url(shakyElectronic.gif) no-repeat';
+			md.style.background = 'url(darkshakyElectronic.gif) no-repeat';
 			md.style.backgroundSize = '100% 100%';
 		} else if (FLOOR === 3) {
-			md.style.background = 'url(shakyHomegood.gif) no-repeat';
+			md.style.background = 'url(darkshakyHomegood.gif) no-repeat';
 			md.style.backgroundSize = '100% 100%';
 		} else if (FLOOR === 2) {
-			md.style.background = 'url(shakyGrocery.gif) no-repeat';
+			md.style.background = 'url(darkshakyGrocery.gif) no-repeat';
 			md.style.backgroundSize = '100% 100%';
 		} else {
-			md.style.background = 'url(shakyCheckout.gif) no-repeat';
+			md.style.background = 'url(darkshakyCheckout.gif) no-repeat';
 			md.style.backgroundSize = '100% 100%';
 		}
 		
 		j = setInterval(function() {
 			if (FLOOR === 4) {
-				md.style.background = 'url(normalElectronic.jpeg) no-repeat';
+				md.style.background = 'url(darkElectronic.jpeg) no-repeat';
 				md.style.backgroundSize = '100% 100%';
 			} else if (FLOOR === 3) {
-				md.style.background = 'url(normalHomegood.jpg) no-repeat';
+				md.style.background = 'url(darkHomegood.jpg) no-repeat';
 				md.style.backgroundSize = '100% 100%';
 			} else if (FLOOR === 2) {
-				md.style.background = 'url(normalGrocery.jpg) no-repeat';
+				md.style.background = 'url(darkGrocery.jpg) no-repeat';
 				md.style.backgroundSize = '100% 100%';
 			} else {
-				md.style.background = 'url(normalCheckout.jpeg) no-repeat';
+				md.style.background = 'url(darkCheckout.jpeg) no-repeat';
 				md.style.backgroundSize = '100% 100%';
 			}
 			
@@ -362,19 +362,35 @@ function doGo(input){
 	colorMap();
 }
 
+function checkAlias(d) {
+	if (d === "n") {
+		d = "north";
+	}
+	else if (d === "s") {
+		d = "south";
+	}
+	else if (d === "e") {
+		d = "east";
+	}
+	else if (d === "w") {
+		d = "west";
+	}
+	return d;
+}
+
 function updateImage(floor) {
 	var md = document.getElementById("visual");
 	if (FLOOR === 4) {
-		md.style.background = 'url(normalElectronic.jpeg) no-repeat';
+		md.style.background = 'url(darkElectronic.jpeg) no-repeat';
 		md.style.backgroundSize = '100% 100%';
 	} else if (FLOOR === 3) {
-		md.style.background = 'url(normalHomegood.jpg) no-repeat';
+		md.style.background = 'url(darkHomegood.jpg) no-repeat';
 		md.style.backgroundSize = '100% 100%';
 	} else if (FLOOR === 2) {
-		md.style.background = 'url(normalGrocery.jpg) no-repeat';
+		md.style.background = 'url(darkGrocery.jpg) no-repeat';
 		md.style.backgroundSize = '100% 100%';
 	} else {
-		md.style.background = 'url(normalCheckout.jpeg) no-repeat';
+		md.style.background = 'url(darkCheckout.jpeg) no-repeat';
 		md.style.backgroundSize = '100% 100%';
 	}
 }
