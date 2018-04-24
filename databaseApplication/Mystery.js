@@ -8,7 +8,7 @@ var countDownDate = null;
 var audio;
 var toto;
 
-var HELPSTR = "You are in a burning building with a locked door. You need to find the code to get out but you also don't want to leave without the items you paid for.\
+var HELPSTR = "You are in a burning building with a locked door. You need to find the code to get out but you also don't want to leave without the items you paid for. \
 Here are some things you can do:<br>\
 <ul>\
 <li>help - Print this helpful message</li>\
@@ -374,6 +374,12 @@ function checkAlias(d) {
 	}
 	else if (d === "w") {
 		d = "west";
+	}
+	else if (d === "u") {
+		d = "up";
+	}
+	else if (d === "d") {
+		d = "down";
 	}
 	return d;
 }
