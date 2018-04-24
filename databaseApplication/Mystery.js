@@ -124,13 +124,13 @@ $(document).ready(function() {
 });
 
 function endGame() {
-	var newBody = "<div id=\"player\" class=\"player\" style=\"float:left; height: 100%; width: 100%;\"> <video id=\"element\" src=\"collapse.mp4\" autoplay style=\"height:100%; width:100%;\"></video></div>";
+	var newBody = "<div id=\"player\" class=\"player\" style=\"float:left; height: 100%; width: 100%;\"> <video id=\"element\" src=\"collapse.mp4\" autoplay style=\"height:90%; width:100%;\"></video> <div id=\"belowVideo\" style=\"text-align:center;\"> <p> Game Over! </p> </div></div>";
 	$('body').html(newBody);
 }
 
 function youWon() {
 	gameEnded = true;
-	var newBody = "<div id=\"player\" class=\"player\" style=\"float:left; height: 100%; width: 100%;\"> <video id=\"element\" src=\"bloodyhell.mp4\" autoplay style=\"height:100%; width:100%;\"></video></div>";
+	var newBody = "<div id=\"player\" class=\"player\" style=\"float:left; height: 100%; width: 100%;\"> <video id=\"element\" src=\"bloodyhell.mp4\" autoplay style=\"height:90%; width:100%;\"></video> <div id=\"belowVideo\" style=\"text-align:center;\"> <p> You Escaped! </p> </div></div>";
 	$('body').html(newBody);
 }
 
