@@ -625,7 +625,9 @@ function colorMap(){
 		for(var c = 0; c < 3; c++){
             if(FLOOR == 1) {
                 $('#map2-1').children().html('door');
-            }
+            } else {
+				$('#map2-1').children().html('');
+			}
 			if(r == ROW && c == COL)
 				$('#map' + r + "-" + c)[0].style.backgroundColor = '#A32B08';
 			else
