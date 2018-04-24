@@ -92,16 +92,14 @@ body{
     height: 33%;
     width: 100%;
     border-top: solid rgba(221, 221, 221, 1);
-    position:relative;
+    display:flex;
+    flex-direction:column;
 }
 
 #map2-1 p {
-    position:absolute;
-    bottom:0;
     color:black;
     font-size: small;
-    text-align:center;
-    vertical-align:bottom;
+    margin-top:auto;
 }
 
 #map2-2{
