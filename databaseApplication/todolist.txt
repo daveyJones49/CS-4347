@@ -4,3 +4,4 @@
 [✓] add borders to aisle in map
 [✓] at the end there should be text saying you won or you lost
 [✓] make directions accept shortcuts ex. "go w" for "go west"
+[ ] make some sweet sweet smoke effects
