@@ -106,12 +106,12 @@ $(document).ready(function() {
 		var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
 		var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-		$('#objective').html(minutes + "m " + seconds + "s ");
+		$('#countdown').html(minutes + "m " + seconds + "s ");
 
 		// If the count down is finished, write some text 
 		if (distance < 0) {
 			clearInterval(k);
-			$('#objective').html("time up");
+			$('#countdown').html("time up");
 			toto.pause();
 			audio.pause();
 			audio = new Audio("gameover.mp3");
@@ -122,14 +122,6 @@ $(document).ready(function() {
 	}, 1000);
 
 });
-
-    }
-    else if(d === 'e') { 
-        d = 'east';
-    }
-    else if(d === 'w') { 
-        d = 'west';
-    }
 
 function endGame() {
 	var newBody = "<div id=\"player\" class=\"player\" style=\"float:left; height: 100%; width: 100%;\"> <video id=\"element\" src=\"collapse.mp4\" autoplay style=\"height:100%; width:100%;\"></video></div>";
