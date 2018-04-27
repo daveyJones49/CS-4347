@@ -155,7 +155,7 @@ Customer = namedtuple('Customer', ['reward_card_number', 'name',
 
 customers = []
 used_customer_ids = set()
-for _ in xrange(1, 101):
+for _ in xrange(1, 1001):
 	e = choice(employees)
 	while e.fk_superior_id == 'NULL':
 		e = choice(employees)
@@ -338,12 +338,12 @@ for c in customers:
 			if e.employee_id == c.fk_employee_id:
 				break
 		
-		kitty = randrange(3)
-		department_id = 1 + 4*(e.fk_store_id-1) + kitty
+		randDep = randrange(3)
+		department_id = 1 + 4*(e.fk_store_id-1) + randDep
 
 		items.append(Item(
 			item_id,
-			choice([appliances, homegoods, groceries][kitty]),
+			choice([appliances, homegoods, groceries][randDep]),
 			randrange(99, 1000000) / 100.0,
 			randrange(10, 71),
 			randrange(0, 1000),
